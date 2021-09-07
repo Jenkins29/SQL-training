@@ -43,7 +43,7 @@ export const selectProductionCompanyById = (id: number): string => {
 };
 
 export const selectMovie = (imdbId: string): string => {
-  return `select original_title from movies where imdb_id = '${imdbId}'`;
+  return `select * from movies where imdb_id = '${imdbId}'`;
 };
 
 export const selectMovieId = (imdbId: string): string => {
@@ -51,27 +51,27 @@ export const selectMovieId = (imdbId: string): string => {
 };
 
 export const selectRatingsByUserID = (userId: number): string => {
-  return `select user_id, movie_id, rating, time_created from movie_ratings where user_id = '${userId}'`;
+  return `select user_id, movie_id, rating, time_created from movie_ratings where user_id = ${userId}`;
 };
 
 export const selectGenresByMovieId = (movieId: number): string => {
-  return `select g.genre from movie_genres mg join genres g on g.id = mg.genre_id where mg.movie_id = '${movieId}'`;
+  return `select g.genre from movie_genres mg join genres g on g.id = mg.genre_id where mg.movie_id = ${movieId}`;
 };
 
 export const selectActorsByMovieId = (movieId: number): string => {
-  return `select a.full_name from movie_actors ma join actors a on a.id = ma.actor_id where ma.movie_id = '${movieId}'`;
+  return `select a.full_name from movie_actors ma join actors a on a.id = ma.actor_id where ma.movie_id = ${movieId}`;
 };
 
 export const selectDirectorsByMovieId = (movieId: number): string => {
-  return `select d.full_name from movie_directors md join directors d on d.id = md.director_id where md.movie_id = '${movieId}'`;
+  return `select d.full_name from movie_directors md join directors d on d.id = md.director_id where md.movie_id = ${movieId}`;
 };
 
 export const selectKeywordsByMovieId = (movieId: number): string => {
-  return `select k.keyword from movie_keywords mk join keywords k on k.id = mk.keyword_id where mk.movie_id = '${movieId}'`;
+  return `select k.keyword from movie_keywords mk join keywords k on k.id = mk.keyword_id where mk.movie_id = ${movieId}`;
 };
 
 export const selectProductionCompaniesByMovieId = (movieId: number): string => {
-  return `select pc.company_name from movie_production_companies mpc join production_companies pc on pc.id = mpc.company_id where mpc.movie_id = '${movieId}'`;
+  return `select pc.company_name from movie_production_companies mpc join production_companies pc on pc.id = mpc.company_id where mpc.movie_id = ${movieId}`;
 };
 
 /**
@@ -79,4 +79,8 @@ export const selectProductionCompaniesByMovieId = (movieId: number): string => {
  */
 export const selectCount = (table: string): string => {
   return `select count(*) as c from ${table}`;
+};
+
+export const selectAllRows = (table: string): string => {
+  return `SELECT * FROM ${table}`;
 };
